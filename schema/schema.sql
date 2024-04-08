@@ -5,3 +5,20 @@ CREATE TABLE users (
   username VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(200) NOT NULL
 );
+
+CREATE TABLE quotes (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  tag VARCHAR (100) NOT NULL,
+  `text` VARCHAR (800) NOT NULL
+);
+
+CREATE TABLE visuals (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  quote_id INT,
+  photo_id VARCHAR (100) NOT NULL,
+
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (quote_id) REFERENCES quotes(id)
+);
+
