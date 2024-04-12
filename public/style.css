@@ -23,13 +23,14 @@ h3 {
 }
 
 a {
-  color: var(--secondary-light);
+  color: white;
   transition: color 200ms;
 }
 a:hover,
 a:focus {
-  color: var(--secondary);
+  color: var(--light-grey);
 }
+
 
 header {
   display: flex;
@@ -101,7 +102,7 @@ header .site-logo {
 }
 
 .visual, .options {
-  border: 5px solid;
+  border: 1px solid;
 }
 
 .visual img {

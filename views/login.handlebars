@@ -1,14 +1,21 @@
 {{> header}}
 <main>
-  <h1>Login</h1>
-  <form class="login-form" action="/api/login" method="POST">
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    {{#if error}}
+  <h1 class="h1 py-5 text-center mt-3">Login</h1>
+    <form class="login-form p-4 p-md-5 border rounded-3 bg-body-tertiary col-4 mx-auto" action="/api/login" method="POST">
+      <div class="mb-3">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username">
+      </div>
+      <div class="mb-3">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+      </div>
+      {{#if error}}
       <p class="login-error">{{error}}</p>
-    {{/if}}
-    <button class="btn">Submit</button>
-  </form>
+      {{/if}}
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+      <hr class="my-4">
+      <small class="text-body-secondary">By clicking Login, you agree to the terms of use.</small>
+    </form>
 </main>
+

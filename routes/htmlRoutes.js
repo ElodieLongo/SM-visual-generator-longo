@@ -27,7 +27,7 @@ router.get("/dashboard", checkAuth, async (req, res) => {
       return res.redirect("/login");
     }
 
-    const visuals = await controllers.user.getVisuals(req.session.user.id);
+    const visuals = await controllers.visual.getVisuals(req.session.user.id);
     const quotes = await controllers.quote.getQuotes();
 
     // Check for errors
@@ -54,7 +54,7 @@ router.get("/visual/:id?", checkAuth, async (req, res) => {
 
   try {
     const quotes = await controllers.quote.getQuotes();
-    const visuals = await controllers.user.getVisuals(req.session.user.id);
+    const visuals = await controllers.visual.getVisuals(req.session.user.id);
 
     if (quotes.error) {
       console.log(quotes.error);

@@ -24,18 +24,9 @@ async function create(username, password) {
   return findByUsername(username);
 }
 
-async function getVisuals(userId) {
-  const [visuals] = await db.query(
-    `SELECT * FROM visuals WHERE user_id=?`,
-    userId
-  );
-  return visuals;
-}
-
 
 module.exports = {
   create,
   checkPassword,
-  findByUsername,
-  getVisuals
+  findByUsername
 };

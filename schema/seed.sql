@@ -39,4 +39,4 @@ INSERT INTO visuals (user_id, quote_id, photo_id)
     (1, 1, "20"),
     (2, 2, "30"),
     (3, 1, "52"),
-    (3, 1, "1");
+    (2, 1, "1");

@@ -30,7 +30,6 @@ async function deleteVisual(req, res) {
   const id = req.params.id;
 
   try {
-
     const result = await Visual.deleteVisual(id);
     if (result.affectedRows === 0) {
       res.status(404).json({ error: 'Visual not found' });
@@ -43,5 +42,18 @@ async function deleteVisual(req, res) {
   }
 }
 
+async function getVisuals(userId) {
+  try {
+    const visuals = await Visual.getVisuals(userId);
 
-module.exports = { createVisual, updateVisual, deleteVisual };
+    if (!visuals) return { error: 'No visuals found for this user' };
+    return visuals;
+  } catch (err) {
+    console.log(err);
+    return { error: err.message };
+  }
+}
+
+
+
+module.exports = { createVisual, updateVisual, deleteVisual, getVisuals };

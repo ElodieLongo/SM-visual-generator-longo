@@ -11,6 +11,7 @@ async function create(req, res) {
 
     if (!user) return res.redirect("/signup?error=error creating new user");
 
+    req.session.user = { id: user.id };
     req.session.isLoggedIn = true;
     req.session.save(() => res.redirect("/"));
   } catch (err) {
@@ -19,16 +20,4 @@ async function create(req, res) {
   }
 }
 
-async function getVisuals(userId) {
-  try {
-    const visuals = await User.getVisuals(userId);
-
-    if (!visuals) return { error: 'No visuals found for this user' };
-    return visuals;
-  } catch (err) {
-    console.log(err);
-    return { error: err.message };
-  }
-}
-
-module.exports = { create, getVisuals };
+module.exports = { create };

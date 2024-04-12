@@ -15,4 +15,12 @@ async function deleteVisual(id) {
   return result;
 }
 
-module.exports = { createVisual, updateVisual, deleteVisual };
+async function getVisuals(userId) {
+  const [visuals] = await db.query(
+    `SELECT * FROM visuals WHERE user_id=?`,
+    userId
+  );
+  return visuals;
+}
+
+module.exports = { createVisual, updateVisual, deleteVisual, getVisuals };
