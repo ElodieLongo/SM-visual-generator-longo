@@ -3,7 +3,8 @@ USE mysql_project_db;
 INSERT INTO users (username, password)
 VALUES 
     ("banana", "$2b$10$/1UfZvXYrToAGa5mO1IbfesmFQJ42WIlI60swCyafhzrB/2KcD1RK"),
-    ("apple", "#2b$10$/1UfZvXYpToAGa5mO1IbfesmFQJ42WIlI60swCyafhzrB/2KcD1RK");
+    ("apple", "#2b$10$/1UfZvXYpToAGa5mO1IbfesmFQJ42WIlI60swCyafhzrB/2KcD1RK"),
+    ("test", "$2y$10$ciFNhTELWIxUvAfzYbWrK.m17VrjrwoWwpNrEPTvY2wHCZ5qevyfu");
 
 
 INSERT INTO quotes (tag, text, author)
@@ -33,11 +34,9 @@ INSERT INTO quotes (tag, text, author)
    ("life", "You cannot find peace by avoiding life.", "Virginia Woolf");
    
 
-
-
-   
-
 INSERT INTO visuals (user_id, quote_id, photo_id)
     VALUES
-    (1, 1, "photo1"),
-    (2, 2, "photo2");
+    (1, 1, "20"),
+    (2, 2, "30"),
+    (3, 1, "52"),
+    (3, 1, "1");

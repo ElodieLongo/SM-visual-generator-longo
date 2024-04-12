@@ -19,4 +19,16 @@ async function create(req, res) {
   }
 }
 
-module.exports = { create };
+async function getVisuals(userId) {
+  try {
+    const visuals = await User.getVisuals(userId);
+
+    if (!visuals) return { error: 'No visuals found for this user' };
+    return visuals;
+  } catch (err) {
+    console.log(err);
+    return { error: err.message };
+  }
+}
+
+module.exports = { create, getVisuals };

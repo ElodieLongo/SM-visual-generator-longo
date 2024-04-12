@@ -1,5 +1,4 @@
 const { User } = require("../models");
-
 async function login(req, res) {
   try {
     const { username, password } = req.body;
@@ -17,6 +16,7 @@ async function login(req, res) {
     if (!passwordMatches)
       return res.redirect("/login?error=username or password is incorrect");
 
+    req.session.user = { id: user.id };
     req.session.isLoggedIn = true;
     req.session.save(() => res.redirect("/"));
   } catch (err) {

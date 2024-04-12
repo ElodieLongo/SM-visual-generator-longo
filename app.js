@@ -3,6 +3,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
+const handlebarsHelpers = require('./views/helpers/handlebarsHelpers');
 const connection = require("./config/connection");
 const apiRoutes = require("./routes/apiRoutes");
 const htmlRoutes = require("./routes/htmlRoutes");
@@ -23,13 +24,11 @@ app.use(
   })
 );
 
-app.engine("handlebars", exphbs.engine());
+app.engine("handlebars", exphbs.engine({ helpers: handlebarsHelpers }));
 app.set("view engine", "handlebars");
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./public"));
-
 app.use("/api", apiRoutes);
 app.use("/", htmlRoutes);
 

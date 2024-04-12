@@ -1,0 +1,157 @@
+{{> header}}
+<main>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <h1 style="font-size: 60px" class="mb-5">Your Visual</h1>
+      <a href="/dashboard">Back to the dashboard</a>
+    </div>
+  </section>
+
+  <section class="py-5 text-center container grid">
+    <div class="visual" id="exportArea">
+      <img src="https://picsum.photos/id/{{visual.photo_id}}/1200/1200" alt="photo" />
+      {{#getQuote quotes visual.quote_id }}
+        <p class="my-3">{{text}}</p>
+      {{/getQuote}}
+    </div>
+    <div class="options">
+      {{#getQuote quotes visual.quote_id }}
+
+<b>Author of the quote:</b> {{author}} <br />
+<b>Quote characters length:</b> {{text.length}} characters
+{{/getQuote}}
+<div class="btn-group w-100" role="group">
+<button id="changeImage" type="button" class="btn btn-primary w-100 me-2">Change Image</button>
+<button id="changeQuote" type="button" class="btn btn-primary w-100 ms-2">Change Quote</button>
+</div>
+      
+        
+        <div class="btn-group w-100" role="group">
+          <button type="button" id="saveBtn" class="btn btn-success w-100 me-2">Save</button>
+          <button type="button" class="btn btn-danger w-100 ms-2" onclick="window.location.reload();">Discard</button>
+        </div>
+
+       <button id="exportButton" type="button" class="btn btn-primary w-100">Export Image</button>  
+      </div>
+     
+  </section>
+
+</main>
+
+<script src ="https://github.com/niklasvh/html2canvas/releases/download/v1.4.1/html2canvas.min.js"></script>
+
+<script>
+  const saveButton = document.getElementById('saveBtn');
+  const changeImageButton = document.getElementById('changeImage');
+  const changeQuoteButton = document.getElementById('changeQuote');
+  const exportButton = document.getElementById('exportButton');
+
+  let userId = "{{visual.user_id}}";
+  let quoteId = "{{visual.quote_id}}";
+  let photoId = "{{visual.photo_id}}";
+  let quotes = {{{json quotes}}};
+
+
+document.getElementById('exportButton').addEventListener('click', function() {
+      // Select the node you want to export
+      const node = document.querySelector('#exportArea img');
+ 
+html2canvas(node).then(function(canvas) {
+    var imgData = canvas.toDataURL('image/png');
+ 
+    var link = document.createElement('a');
+    link.download = 'screenshot.png';
+    link.href = imgData;
+ 
+    document.body.appendChild(link);
+ 
+   link.click();
+ 
+    document.body.removeChild(link);
+});
+    });
+
+  changeImageButton.addEventListener('click', () => {
+    photoId = Math.floor(Math.random() * 60) + 1;
+    document.querySelector('.visual img').src = `https://picsum.photos/id/${photoId}/1200/1200`;
+  });
+
+  changeQuoteButton.addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const newQuote = quotes[randomIndex];
+    quoteId = newQuote.id;
+
+    document.querySelector('.visual p').textContent = newQuote.text;
+  });
+
+  saveButton.addEventListener('click', () => {
+    const url = window.location.pathname;
+    const id = url.split('/').pop();
+
+    const visualData = {
+      user_id: parseInt(userId),
+      quote_id: parseInt(quoteId),
+      photo_id: photoId
+    };
+
+    let method, apiEndpoint;
+
+    if (id === 'visual') {
+      method = 'POST';
+      apiEndpoint = '/api/visual';
+    } else {
+      method = 'PUT';
+      apiEndpoint = `/api/visual/${id}`;
+    }
+
+    fetch(apiEndpoint, {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(visualData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  });
+</script>
+
+
+
+
+
+{{!-- <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Quote settings
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <label for="customRange2" class="form-label">Font size</label>
+              <input type="range" class="form-range" min="1" max="50" value="10" id="customRange2">
+              <label for="exampleColorInput" class="form-label">Font color</label>
+              <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#000000"
+                title="Choose your color">
+              <p>Position X:</p>
+              <select class="form-select">
+                <option value="left">Left</option>
+                <option value="center">Center</option>
+                <option value="top">Top</option>
+              </select>
+              <p>Position Y:</p>
+              <select class="form-select">
+                <option value="left">Left</option>
+                <option value="center">Center</option>
+                <option value="top">Top</option>
+              </select>
+            </div>
+          </div>
+        </div> --}}
