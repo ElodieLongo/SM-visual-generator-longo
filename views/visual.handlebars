@@ -1,20 +1,23 @@
 {{> header}}
 <main>
   <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <h1 style="font-size: 60px" class="mb-5">Your Visual</h1>
-      <a href="/dashboard">Back to the dashboard</a>
-    </div>
-  </section>
+  <div class="row py-lg-5">
+    <h1 style="font-size: 60px" class="mb-5">Your Visual</h1>
+    <a href="/dashboard">Back to the dashboard</a>
+  </div>
+</section>
 
-  <section class="py-5 text-center container grid">
-    <div class="visual" id="exportArea">
-      <img src="https://picsum.photos/id/{{visual.photo_id}}/1200/1200" alt="photo" />
-      {{#getQuote quotes visual.quote_id }}
-        <p class="my-3">{{text}}</p>
-      {{/getQuote}}
-    </div>
-    <div class="options">
+<section class="py-5 text-center container">
+  <div class="export-area-container">
+    <div class="export-area">
+      <div class="visual">
+        <img src="https://picsum.photos/id/{{visual.photo_id}}/1200/1200" alt="photo" />
+        {{#getQuote quotes visual.quote_id}}
+          <p class="quote">{{text}}</p>
+          <p class="author"><i>{{author}}</i></p>
+        {{/getQuote}}
+      </div>
+      <div class="options">
       {{#getQuote quotes visual.quote_id }}
 
 <b>Author of the quote:</b> {{author}} <br />
