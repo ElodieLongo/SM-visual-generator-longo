@@ -3,16 +3,18 @@
 <main>
   <div class="container col-xl-10 col-xxl-8 px-4 py-5">
     <div class="row align-items-center g-lg-5 py-5">
-      <div class="col-lg-7 text-center text-lg-start">
+      <div class="col-lg-7 text-lg-start">
         <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Social Media Quotes generator</h1>
-        <p class="col-lg-10 fs-4">Pick up a topic and get a selection of curated matches between quotes and photos.</p>
+        <p class="col-lg-10 fs-4">Pick up a topic and get a selection of curated matches between quotes and photos.{{#unless isLoggedIn}}<br>Login or signup to start!{{/unless}}</p>
       </div>
       <div class="col-md-10 mx-auto col-lg-5">
         {{#if isLoggedIn}}
+        <div class="text-center text-lg-start">
         <h1 class="h1">You are now logged in and ready to start creating visualizations!</h1>
-        <a href="/dashboard" class="btn btn-outline-primary" type="submit">Go to the dashboard</a>
+        <a href="/dashboard" class="btn w-50 btn btn-lg btn-outline-primary btn-center" type="submit">Go to the dashboard</a>
+        </div>
         {{else}}
-        <form class="login-form p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/api/login" method="POST">
+        <form class="login-form p-4 p-md-5 border rounded-3 bg-body-secondary" action="/api/login" method="POST">
           <div class="mb-3">
             <label for="username">Username</label>
             <input type="text" name="username" id="username">
@@ -24,7 +26,7 @@
           {{#if error}}
           <p class="login-error">{{error}}</p>
           {{/if}}
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+          <button class="w-90 btn btn-lg btn-outline-primary" type="submit">Login</button>
           <hr class="my-4">
           <small class="text-body-secondary">By clicking Login, you agree to the terms of use.</small>
         </form>

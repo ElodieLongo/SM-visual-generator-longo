@@ -31,7 +31,6 @@ a:focus {
   color: var(--light-grey);
 }
 
-
 header {
   display: flex;
   flex-wrap: wrap;
@@ -70,6 +69,7 @@ header .site-logo {
   color: var(--secondary-light);
 }
 
+
 .login-form input {
   margin-bottom: calc(var(--space) * 2);
   padding: calc(var(--space) * 0.5) calc(var(--space) * 1);
@@ -86,7 +86,10 @@ header .site-logo {
   header a {
     margin: calc(var(--space) / 2);
   }
+
+
 }
+
 
 .grid {
   display: grid;
@@ -99,6 +102,15 @@ header .site-logo {
   .grid {
     grid-template-columns: 1fr 1fr;
   }
+  .text-center.text-lg-start {
+    text-align:left;
+
+    .row align-items: ;
+  }
+
+
+ 
+
 }
 
 .visual, .options {

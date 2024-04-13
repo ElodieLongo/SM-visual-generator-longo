@@ -5,7 +5,7 @@
       <div class="col-lg-6 col-md-8 mx-auto">
        <h1 style="font-size: 60px" class="mb-5">Dashboard</h1>
         <p class="lead text-muted fw-bold mb-5">Modify your creations or create a new one!</p>
-          <a href="/visual" class="w-100 btn btn-lg btn-primary">Create a new Visualization</a>
+          <a href="/visual" class="btn w-80 btn btn-lg btn-outline-primary">Create a new Visualization</a>
       </div>
     </div>
   </section>
@@ -24,8 +24,8 @@
               {{/getQuote}}
               </p>
               <div class="btn-group w-100 p-5">
-                  <a href="/visual/{{id}}" type="button" class="btn btn-success me-1 w-100">Edit</a>
-                  <button  type="button" class="btn btn-danger ms-1 w-100" onclick="deleteVisual({{id}})">Delete</button>
+                  <a href="/visual/{{id}}" type="button" class="btn btn-outline me-1 w-100">Edit</a>
+                  <button  type="button" class="btn btn-outline ms-1 w-100" onclick="deleteVisual({{id}})">Delete</button>
                 </div>
             </div>
             </div>
