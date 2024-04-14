@@ -3,16 +3,16 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-       <h1 style="font-size: 60px" class="mb-5">Dashboard</h1>
+        <h1 style="font-size: 60px" class="mb-5">Dashboard</h1>
         <p class="lead text-muted fw-bold mb-5">Modify your creations or create a new one!</p>
-          <a href="/visual" class="btn w-80 btn btn-lg btn-outline-primary">Create a new Visualization</a>
+        <a href="/visual" class="btn w-80 btn btn-lg btn-outline-primary">Create a new Visualization</a>
       </div>
     </div>
   </section>
 
   <div class="album py-5 bg-light">
     <div class="container album-grid">
-  {{#if visuals.length}}
+    {{#if visuals.length}}
         {{#each visuals}}
           <div class="card shadow-sm">
              <img src="https://picsum.photos/id/{{photo_id}}/200/300" />
@@ -24,8 +24,8 @@
               {{/getQuote}}
               </p>
               <div class="btn-group w-100 p-5">
-                  <a href="/visual/{{id}}" type="button" class="btn btn-outline me-1 w-100">Edit</a>
-                  <button  type="button" class="btn btn-outline ms-1 w-100" onclick="deleteVisual({{id}})">Delete</button>
+                  <a href="/visual/{{id}}" type="button" class="btn btn-primary me-1 w-100">Edit</a>
+                  <button  type="button" class="btn btn-secondary ms-1 w-100" onclick="deleteVisual({{id}})">Delete</button>
                 </div>
             </div>
             </div>
@@ -33,11 +33,11 @@
       {{else}}
         <p>No visuals found. Please create a new one using the button above!</p>
       {{/if}}
-
     </div>
   </div>
-
 </main>
+
+
 
 <script>
 function deleteVisual(id) {

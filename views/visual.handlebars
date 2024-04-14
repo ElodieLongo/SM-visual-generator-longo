@@ -95,7 +95,7 @@ exportImageButton.addEventListener('click', () => {
     a.download = 'visual.png';
     a.click();
   };
-
+photoId = "{{visual.photo_id}}";
   imgElement.src = imgElement.src;
 });
   
@@ -111,6 +111,8 @@ exportImageButton.addEventListener('click', () => {
     quoteId = newQuote.id;
 
     document.querySelector('.visual p').textContent = newQuote.text;
+
+    document.querySelector('.visual p.author i').textContent = newQuote.author;
   });
 
   saveButton.addEventListener('click', () => {
